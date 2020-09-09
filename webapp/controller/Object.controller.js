@@ -58,7 +58,24 @@ sap.ui.define([
 				this.getRouter().navTo("worklist", {}, true);
 			}
 		},
+		onShowDetailPopover: function (oEvent) {
+			var oPopover = this._getPopover();
+			var oSource = oEvent.getSource();
+			oPopover.bindElement(oSource.getBindingContext().getPath());
+			// open dialog
+			oPopover.openBy(oEvent.getParameter("domRef"));
+		},
 
+		_getPopover: function () {
+			// create dialog lazily
+			if (!this._oPopover) {
+				// create popover via fragment factory
+				this._oPopover = sap.ui.xmlfragment(
+					"opensap.products.ManageProducts.view.ResponsivePopover", this);
+				this.getView().addDependent(this._oPopover);
+			}
+			return this._oPopover;
+		},
 		/* =========================================================== */
 		/* internal methods                                            */
 		/* =========================================================== */
