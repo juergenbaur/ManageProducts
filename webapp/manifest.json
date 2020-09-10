@@ -16,7 +16,17 @@
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml"
+					"localUri": "localService/metadata.xml",
+					"annotations": [
+						"annotation1"
+					]
+				}
+			},
+			"annotation1": {
+				"type": "ODataAnnotation",
+				"uri": "annotation1.xml",
+				"settings": {
+					"localUri": "annotation1.xml"
 				}
 			}
 		},
@@ -76,6 +86,10 @@
 						"sap-documentation": "heading"
 					}
 				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
 			}
 		},
 		"routing": {
@@ -92,24 +106,26 @@
 				},
 				"async": true
 			},
-			"routes": [{
+			"routes": [
+				{
 					"pattern": "",
 					"name": "worklist",
 					"target": [
 						"worklist"
 					]
-				}, {
+				},
+				{
 					"pattern": "ProductSet/{objectId}",
 					"name": "object",
 					"target": [
 						"object"
 					]
-				}, {
+				},
+				{
 					"pattern": "AddProduct",
 					"name": "add",
 					"target": "add"
 				}
-
 			],
 			"targets": {
 				"worklist": {
